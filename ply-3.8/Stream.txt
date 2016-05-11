@@ -1,0 +1,5 @@
+func main() -> int {
+	int a;
+	let a = [4, 5, 6];
+	a | stream();
+}

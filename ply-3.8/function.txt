@@ -1,0 +1,7 @@
+func main() -> int {
+	int a;
+}
+
+func maine() -> int {
+	int b;
+}
