@@ -19,7 +19,10 @@ reserved = {
     'TRUE'   : 'TRUE',
     'FALSE'  : 'FALSE',
     'FUNC'   : 'func',
-    'LET'   : 'let',
+    'LET'    : 'let',
+    'STREAM' : 'stream',
+    'FILTER' : 'filter',
+    'ARRAY'  : 'Array',
 }
 
 # List of token names.
@@ -27,7 +30,7 @@ tokens = [
           'AND_OP', 'OR_OP', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LCURLY', 'RCURLY', \
           'SEMI', 'EQ_OP', 'NE_OP', 'LE_OP', 'GE_OP', 'ELEM', 'PIPE', 'EQUALS', \
           'LT_OP', 'GT_OP', 'PLUS', 'MINUS', 'MULT', 'DIV', 'PRCNT', 'BANG', \
-          'COMMA', 'SQUOTE', 'LAMBDA', 'MAP_TO', \
+          'COMMA', 'SQUOTE', 'LAMBDA', 'MAP_TO', 'OPEN_RNG', \
           #'DOT', \
           'INTEGER', 'IDENTIFIER', 'CLFLOAT', 'CLSTRING' \
           ] + list(reserved.keys())
@@ -64,9 +67,10 @@ t_PRCNT  = r'%'
 t_BANG   = r'!'
 t_COMMA  = r','
 t_SQUOTE = r"'"
-#t_DOT    = r'.'
+#t_DOT    = r'\.'
 t_LAMBDA = r'\(\\'
 t_MAP_TO = r'->'
+t_OPEN_RNG = r'-<'
 
 def t_INTEGER(t):
     r'\d+'

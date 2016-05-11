@@ -9,6 +9,6 @@ public class Stream {
         number.stream()
                 .sorted()
                 .map(n -> n+2)
-                .forEach(n -> System.out.println(n));
+                .forEach(n -> System.out.print(n.toString() + ", "));
     }
 }
