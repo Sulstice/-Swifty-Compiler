@@ -1,0 +1,4 @@
+func main() -> int {
+	int a;
+	let a = Array(0 -< 10) | filter{<0> % 2 == 0}
+}

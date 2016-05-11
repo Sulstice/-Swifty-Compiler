@@ -1,0 +1,2466 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ELSE
+    IF
+    FOR
+    LAMBDA
+    ELEM
+    VOID
+    IFF
+    RETURN
+    SQUOTE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declarations
+Rule 2     program -> functions
+Rule 3     program -> declarations functions
+Rule 4     functions -> function
+Rule 5     functions -> functions function
+Rule 6     function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+Rule 7     function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+Rule 8     function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+Rule 9     declarations -> type idList SEMI
+Rule 10    declarations -> declarations type idList SEMI
+Rule 11    declarations -> type idList EQUALS expression SEMI
+Rule 12    declarations -> declarations type idList EQUALS expression SEMI
+Rule 13    idList -> IDENTIFIER
+Rule 14    idList -> IDENTIFIER COMMA idList
+Rule 15    idList -> INTEGER
+Rule 16    idList -> INTEGER COMMA idList
+Rule 17    type -> INT
+Rule 18    type -> FLOAT
+Rule 19    type -> BOOL
+Rule 20    type -> LIST
+Rule 21    type -> TUPLE
+Rule 22    type -> OBJECT
+Rule 23    type -> STRING
+Rule 24    statements -> statement
+Rule 25    statements -> statements statement
+Rule 26    statement -> expression SEMI
+Rule 27    statement -> assignment SEMI
+Rule 28    statement -> whileStatement
+Rule 29    statement -> listStatement
+Rule 30    statement -> streamStatement
+Rule 31    statement -> arrayStatement
+Rule 32    statement -> filterStatement
+Rule 33    assignment -> LET IDENTIFIER EQUALS expression SEMI
+Rule 34    whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY
+Rule 35    listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+Rule 36    listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI
+Rule 37    filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+Rule 38    streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI
+Rule 39    arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+Rule 40    expression -> conjunction
+Rule 41    expression -> conjunction OR_OP expression
+Rule 42    conjunction -> equality
+Rule 43    conjunction -> AND_OP equality
+Rule 44    equality -> relation
+Rule 45    equality -> relation equOp equality
+Rule 46    equOp -> EQ_OP
+Rule 47    equOp -> NE_OP
+Rule 48    relation -> addition
+Rule 49    relation -> addition relOp relation
+Rule 50    relOp -> LT_OP
+Rule 51    relOp -> LE_OP
+Rule 52    relOp -> GT_OP
+Rule 53    relOp -> GE_OP
+Rule 54    addition -> term
+Rule 55    addition -> term addOP addition
+Rule 56    addOP -> PLUS
+Rule 57    addOP -> MINUS
+Rule 58    term -> factor
+Rule 59    term -> factor mulOP term
+Rule 60    mulOP -> MULT
+Rule 61    mulOP -> DIV
+Rule 62    mulOP -> PRCNT
+Rule 63    factor -> primary
+Rule 64    factor -> primary unaryOP factor
+Rule 65    unaryOP -> MINUS
+Rule 66    unaryOP -> BANG
+Rule 67    primary -> literal
+Rule 68    literal -> INTEGER
+Rule 69    literal -> IDENTIFIER
+Rule 70    literal -> TRUE
+Rule 71    literal -> FALSE
+Rule 72    literal -> CLFLOAT
+Rule 73    literal -> CLSTRING
+
+Terminals, with rules where they appear
+
+AND_OP               : 43
+ARRAY                : 39
+BANG                 : 66
+BOOL                 : 19
+CLFLOAT              : 72
+CLSTRING             : 73
+COMMA                : 14 16
+DIV                  : 61
+ELEM                 : 
+ELSE                 : 
+EQUALS               : 11 12 33 35 36 39
+EQ_OP                : 37 46
+FALSE                : 71
+FILTER               : 37
+FLOAT                : 18
+FOR                  : 
+FUNC                 : 6 7 8
+GE_OP                : 53
+GT_OP                : 37 52
+IDENTIFIER           : 6 7 8 13 14 33 35 36 38 39 69
+IF                   : 
+IFF                  : 
+INT                  : 17
+INTEGER              : 15 16 37 37 37 39 39 68
+LAMBDA               : 
+LBRACE               : 35 36
+LCURLY               : 6 7 8 34 37
+LET                  : 33 35 36 39
+LE_OP                : 51
+LIST                 : 20
+LPAREN               : 6 7 8 34 38 39
+LT_OP                : 37 50
+MAP_TO               : 6 7 8
+MINUS                : 57 65
+MULT                 : 60
+NE_OP                : 47
+OBJECT               : 22
+OPEN_RNG             : 39
+OR_OP                : 41
+PIPE                 : 38 39
+PLUS                 : 56
+PRCNT                : 37 62
+RBRACE               : 35 36
+RCURLY               : 6 7 8 34 37
+RETURN               : 
+RPAREN               : 6 7 8 34 38 39
+SEMI                 : 9 10 11 12 26 27 33 35 36 38
+SQUOTE               : 
+STREAM               : 38
+STRING               : 23
+TRUE                 : 70
+TUPLE                : 21
+VOID                 : 
+WHILE                : 34
+error                : 
+
+Nonterminals, with rules where they appear
+
+addOP                : 55
+addition             : 48 49 55
+arrayStatement       : 31
+assignment           : 27
+conjunction          : 40 41
+declarations         : 1 3 7 8 10 12
+equOp                : 45
+equality             : 42 43 45
+expression           : 11 12 26 33 34 41
+factor               : 58 59 64
+filterStatement      : 32 39
+function             : 4 5
+functions            : 2 3 5
+idList               : 9 10 11 12 14 16 35
+listStatement        : 29
+literal              : 67
+mulOP                : 59
+primary              : 63 64
+program              : 0
+relOp                : 49
+relation             : 44 45 49
+statement            : 24 25
+statements           : 8 25 34
+streamStatement      : 30
+term                 : 54 55 59
+type                 : 6 7 8 9 10 11 12
+unaryOP              : 64
+whileStatement       : 28
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declarations
+    (2) program -> . functions
+    (3) program -> . declarations functions
+    (9) declarations -> . type idList SEMI
+    (10) declarations -> . declarations type idList SEMI
+    (11) declarations -> . type idList EQUALS expression SEMI
+    (12) declarations -> . declarations type idList EQUALS expression SEMI
+    (4) functions -> . function
+    (5) functions -> . functions function
+    (17) type -> . INT
+    (18) type -> . FLOAT
+    (19) type -> . BOOL
+    (20) type -> . LIST
+    (21) type -> . TUPLE
+    (22) type -> . OBJECT
+    (23) type -> . STRING
+    (6) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 1
+    BOOL            shift and go to state 11
+    LIST            shift and go to state 13
+    TUPLE           shift and go to state 10
+    OBJECT          shift and go to state 8
+    STRING          shift and go to state 12
+    FUNC            shift and go to state 7
+
+    functions                      shift and go to state 2
+    program                        shift and go to state 3
+    type                           shift and go to state 4
+    declarations                   shift and go to state 9
+    function                       shift and go to state 6
+
+state 1
+
+    (18) type -> FLOAT .
+
+    LCURLY          reduce using rule 18 (type -> FLOAT .)
+    IDENTIFIER      reduce using rule 18 (type -> FLOAT .)
+    INTEGER         reduce using rule 18 (type -> FLOAT .)
+
+
+state 2
+
+    (2) program -> functions .
+    (5) functions -> functions . function
+    (6) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    $end            reduce using rule 2 (program -> functions .)
+    FUNC            shift and go to state 7
+
+    function                       shift and go to state 14
+
+state 3
+
+    (0) S' -> program .
+
+
+
+state 4
+
+    (9) declarations -> type . idList SEMI
+    (11) declarations -> type . idList EQUALS expression SEMI
+    (13) idList -> . IDENTIFIER
+    (14) idList -> . IDENTIFIER COMMA idList
+    (15) idList -> . INTEGER
+    (16) idList -> . INTEGER COMMA idList
+
+    IDENTIFIER      shift and go to state 16
+    INTEGER         shift and go to state 17
+
+    idList                         shift and go to state 15
+
+state 5
+
+    (17) type -> INT .
+
+    LCURLY          reduce using rule 17 (type -> INT .)
+    IDENTIFIER      reduce using rule 17 (type -> INT .)
+    INTEGER         reduce using rule 17 (type -> INT .)
+
+
+state 6
+
+    (4) functions -> function .
+
+    FUNC            reduce using rule 4 (functions -> function .)
+    $end            reduce using rule 4 (functions -> function .)
+
+
+state 7
+
+    (6) function -> FUNC . IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> FUNC . IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> FUNC . IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    IDENTIFIER      shift and go to state 18
+
+
+state 8
+
+    (22) type -> OBJECT .
+
+    LCURLY          reduce using rule 22 (type -> OBJECT .)
+    IDENTIFIER      reduce using rule 22 (type -> OBJECT .)
+    INTEGER         reduce using rule 22 (type -> OBJECT .)
+
+
+state 9
+
+    (1) program -> declarations .
+    (3) program -> declarations . functions
+    (10) declarations -> declarations . type idList SEMI
+    (12) declarations -> declarations . type idList EQUALS expression SEMI
+    (4) functions -> . function
+    (5) functions -> . functions function
+    (17) type -> . INT
+    (18) type -> . FLOAT
+    (19) type -> . BOOL
+    (20) type -> . LIST
+    (21) type -> . TUPLE
+    (22) type -> . OBJECT
+    (23) type -> . STRING
+    (6) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    $end            reduce using rule 1 (program -> declarations .)
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 1
+    BOOL            shift and go to state 11
+    LIST            shift and go to state 13
+    TUPLE           shift and go to state 10
+    OBJECT          shift and go to state 8
+    STRING          shift and go to state 12
+    FUNC            shift and go to state 7
+
+    functions                      shift and go to state 19
+    type                           shift and go to state 20
+    function                       shift and go to state 6
+
+state 10
+
+    (21) type -> TUPLE .
+
+    LCURLY          reduce using rule 21 (type -> TUPLE .)
+    IDENTIFIER      reduce using rule 21 (type -> TUPLE .)
+    INTEGER         reduce using rule 21 (type -> TUPLE .)
+
+
+state 11
+
+    (19) type -> BOOL .
+
+    LCURLY          reduce using rule 19 (type -> BOOL .)
+    IDENTIFIER      reduce using rule 19 (type -> BOOL .)
+    INTEGER         reduce using rule 19 (type -> BOOL .)
+
+
+state 12
+
+    (23) type -> STRING .
+
+    LCURLY          reduce using rule 23 (type -> STRING .)
+    IDENTIFIER      reduce using rule 23 (type -> STRING .)
+    INTEGER         reduce using rule 23 (type -> STRING .)
+
+
+state 13
+
+    (20) type -> LIST .
+
+    LCURLY          reduce using rule 20 (type -> LIST .)
+    IDENTIFIER      reduce using rule 20 (type -> LIST .)
+    INTEGER         reduce using rule 20 (type -> LIST .)
+
+
+state 14
+
+    (5) functions -> functions function .
+
+    FUNC            reduce using rule 5 (functions -> functions function .)
+    $end            reduce using rule 5 (functions -> functions function .)
+
+
+state 15
+
+    (9) declarations -> type idList . SEMI
+    (11) declarations -> type idList . EQUALS expression SEMI
+
+    SEMI            shift and go to state 22
+    EQUALS          shift and go to state 21
+
+
+state 16
+
+    (13) idList -> IDENTIFIER .
+    (14) idList -> IDENTIFIER . COMMA idList
+
+    SEMI            reduce using rule 13 (idList -> IDENTIFIER .)
+    EQUALS          reduce using rule 13 (idList -> IDENTIFIER .)
+    RBRACE          reduce using rule 13 (idList -> IDENTIFIER .)
+    COMMA           shift and go to state 23
+
+
+state 17
+
+    (15) idList -> INTEGER .
+    (16) idList -> INTEGER . COMMA idList
+
+    SEMI            reduce using rule 15 (idList -> INTEGER .)
+    EQUALS          reduce using rule 15 (idList -> INTEGER .)
+    RBRACE          reduce using rule 15 (idList -> INTEGER .)
+    COMMA           shift and go to state 24
+
+
+state 18
+
+    (6) function -> FUNC IDENTIFIER . LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> FUNC IDENTIFIER . LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> FUNC IDENTIFIER . LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    LPAREN          shift and go to state 25
+
+
+state 19
+
+    (3) program -> declarations functions .
+    (5) functions -> functions . function
+    (6) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> . FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    $end            reduce using rule 3 (program -> declarations functions .)
+    FUNC            shift and go to state 7
+
+    function                       shift and go to state 14
+
+state 20
+
+    (10) declarations -> declarations type . idList SEMI
+    (12) declarations -> declarations type . idList EQUALS expression SEMI
+    (13) idList -> . IDENTIFIER
+    (14) idList -> . IDENTIFIER COMMA idList
+    (15) idList -> . INTEGER
+    (16) idList -> . INTEGER COMMA idList
+
+    IDENTIFIER      shift and go to state 16
+    INTEGER         shift and go to state 17
+
+    idList                         shift and go to state 26
+
+state 21
+
+    (11) declarations -> type idList EQUALS . expression SEMI
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    expression                     shift and go to state 38
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    conjunction                    shift and go to state 30
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 22
+
+    (9) declarations -> type idList SEMI .
+
+    INT             reduce using rule 9 (declarations -> type idList SEMI .)
+    FLOAT           reduce using rule 9 (declarations -> type idList SEMI .)
+    BOOL            reduce using rule 9 (declarations -> type idList SEMI .)
+    LIST            reduce using rule 9 (declarations -> type idList SEMI .)
+    TUPLE           reduce using rule 9 (declarations -> type idList SEMI .)
+    OBJECT          reduce using rule 9 (declarations -> type idList SEMI .)
+    STRING          reduce using rule 9 (declarations -> type idList SEMI .)
+    FUNC            reduce using rule 9 (declarations -> type idList SEMI .)
+    $end            reduce using rule 9 (declarations -> type idList SEMI .)
+    RCURLY          reduce using rule 9 (declarations -> type idList SEMI .)
+    LET             reduce using rule 9 (declarations -> type idList SEMI .)
+    WHILE           reduce using rule 9 (declarations -> type idList SEMI .)
+    IDENTIFIER      reduce using rule 9 (declarations -> type idList SEMI .)
+    FILTER          reduce using rule 9 (declarations -> type idList SEMI .)
+    AND_OP          reduce using rule 9 (declarations -> type idList SEMI .)
+    INTEGER         reduce using rule 9 (declarations -> type idList SEMI .)
+    TRUE            reduce using rule 9 (declarations -> type idList SEMI .)
+    FALSE           reduce using rule 9 (declarations -> type idList SEMI .)
+    CLFLOAT         reduce using rule 9 (declarations -> type idList SEMI .)
+    CLSTRING        reduce using rule 9 (declarations -> type idList SEMI .)
+
+
+state 23
+
+    (14) idList -> IDENTIFIER COMMA . idList
+    (13) idList -> . IDENTIFIER
+    (14) idList -> . IDENTIFIER COMMA idList
+    (15) idList -> . INTEGER
+    (16) idList -> . INTEGER COMMA idList
+
+    IDENTIFIER      shift and go to state 16
+    INTEGER         shift and go to state 17
+
+    idList                         shift and go to state 43
+
+state 24
+
+    (16) idList -> INTEGER COMMA . idList
+    (13) idList -> . IDENTIFIER
+    (14) idList -> . IDENTIFIER COMMA idList
+    (15) idList -> . INTEGER
+    (16) idList -> . INTEGER COMMA idList
+
+    IDENTIFIER      shift and go to state 16
+    INTEGER         shift and go to state 17
+
+    idList                         shift and go to state 44
+
+state 25
+
+    (6) function -> FUNC IDENTIFIER LPAREN . RPAREN MAP_TO type LCURLY RCURLY
+    (7) function -> FUNC IDENTIFIER LPAREN . RPAREN MAP_TO type LCURLY declarations RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN . RPAREN MAP_TO type LCURLY declarations statements RCURLY
+
+    RPAREN          shift and go to state 45
+
+
+state 26
+
+    (10) declarations -> declarations type idList . SEMI
+    (12) declarations -> declarations type idList . EQUALS expression SEMI
+
+    SEMI            shift and go to state 47
+    EQUALS          shift and go to state 46
+
+
+state 27
+
+    (73) literal -> CLSTRING .
+
+    MINUS           reduce using rule 73 (literal -> CLSTRING .)
+    BANG            reduce using rule 73 (literal -> CLSTRING .)
+    MULT            reduce using rule 73 (literal -> CLSTRING .)
+    DIV             reduce using rule 73 (literal -> CLSTRING .)
+    PRCNT           reduce using rule 73 (literal -> CLSTRING .)
+    PLUS            reduce using rule 73 (literal -> CLSTRING .)
+    LT_OP           reduce using rule 73 (literal -> CLSTRING .)
+    LE_OP           reduce using rule 73 (literal -> CLSTRING .)
+    GT_OP           reduce using rule 73 (literal -> CLSTRING .)
+    GE_OP           reduce using rule 73 (literal -> CLSTRING .)
+    EQ_OP           reduce using rule 73 (literal -> CLSTRING .)
+    NE_OP           reduce using rule 73 (literal -> CLSTRING .)
+    OR_OP           reduce using rule 73 (literal -> CLSTRING .)
+    SEMI            reduce using rule 73 (literal -> CLSTRING .)
+    RPAREN          reduce using rule 73 (literal -> CLSTRING .)
+
+
+state 28
+
+    (44) equality -> relation .
+    (45) equality -> relation . equOp equality
+    (46) equOp -> . EQ_OP
+    (47) equOp -> . NE_OP
+
+    OR_OP           reduce using rule 44 (equality -> relation .)
+    SEMI            reduce using rule 44 (equality -> relation .)
+    RPAREN          reduce using rule 44 (equality -> relation .)
+    EQ_OP           shift and go to state 49
+    NE_OP           shift and go to state 48
+
+    equOp                          shift and go to state 50
+
+state 29
+
+    (67) primary -> literal .
+
+    MINUS           reduce using rule 67 (primary -> literal .)
+    BANG            reduce using rule 67 (primary -> literal .)
+    MULT            reduce using rule 67 (primary -> literal .)
+    DIV             reduce using rule 67 (primary -> literal .)
+    PRCNT           reduce using rule 67 (primary -> literal .)
+    PLUS            reduce using rule 67 (primary -> literal .)
+    LT_OP           reduce using rule 67 (primary -> literal .)
+    LE_OP           reduce using rule 67 (primary -> literal .)
+    GT_OP           reduce using rule 67 (primary -> literal .)
+    GE_OP           reduce using rule 67 (primary -> literal .)
+    EQ_OP           reduce using rule 67 (primary -> literal .)
+    NE_OP           reduce using rule 67 (primary -> literal .)
+    OR_OP           reduce using rule 67 (primary -> literal .)
+    SEMI            reduce using rule 67 (primary -> literal .)
+    RPAREN          reduce using rule 67 (primary -> literal .)
+
+
+state 30
+
+    (40) expression -> conjunction .
+    (41) expression -> conjunction . OR_OP expression
+
+    SEMI            reduce using rule 40 (expression -> conjunction .)
+    RPAREN          reduce using rule 40 (expression -> conjunction .)
+    OR_OP           shift and go to state 51
+
+
+state 31
+
+    (54) addition -> term .
+    (55) addition -> term . addOP addition
+    (56) addOP -> . PLUS
+    (57) addOP -> . MINUS
+
+    LT_OP           reduce using rule 54 (addition -> term .)
+    LE_OP           reduce using rule 54 (addition -> term .)
+    GT_OP           reduce using rule 54 (addition -> term .)
+    GE_OP           reduce using rule 54 (addition -> term .)
+    EQ_OP           reduce using rule 54 (addition -> term .)
+    NE_OP           reduce using rule 54 (addition -> term .)
+    OR_OP           reduce using rule 54 (addition -> term .)
+    SEMI            reduce using rule 54 (addition -> term .)
+    RPAREN          reduce using rule 54 (addition -> term .)
+    PLUS            shift and go to state 54
+    MINUS           shift and go to state 53
+
+    addOP                          shift and go to state 52
+
+state 32
+
+    (69) literal -> IDENTIFIER .
+
+    MINUS           reduce using rule 69 (literal -> IDENTIFIER .)
+    BANG            reduce using rule 69 (literal -> IDENTIFIER .)
+    MULT            reduce using rule 69 (literal -> IDENTIFIER .)
+    DIV             reduce using rule 69 (literal -> IDENTIFIER .)
+    PRCNT           reduce using rule 69 (literal -> IDENTIFIER .)
+    PLUS            reduce using rule 69 (literal -> IDENTIFIER .)
+    LT_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    LE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    GT_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    GE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    EQ_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    NE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    OR_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    SEMI            reduce using rule 69 (literal -> IDENTIFIER .)
+    RPAREN          reduce using rule 69 (literal -> IDENTIFIER .)
+
+
+state 33
+
+    (58) term -> factor .
+    (59) term -> factor . mulOP term
+    (60) mulOP -> . MULT
+    (61) mulOP -> . DIV
+    (62) mulOP -> . PRCNT
+
+    PLUS            reduce using rule 58 (term -> factor .)
+    MINUS           reduce using rule 58 (term -> factor .)
+    LT_OP           reduce using rule 58 (term -> factor .)
+    LE_OP           reduce using rule 58 (term -> factor .)
+    GT_OP           reduce using rule 58 (term -> factor .)
+    GE_OP           reduce using rule 58 (term -> factor .)
+    EQ_OP           reduce using rule 58 (term -> factor .)
+    NE_OP           reduce using rule 58 (term -> factor .)
+    OR_OP           reduce using rule 58 (term -> factor .)
+    SEMI            reduce using rule 58 (term -> factor .)
+    RPAREN          reduce using rule 58 (term -> factor .)
+    MULT            shift and go to state 58
+    DIV             shift and go to state 56
+    PRCNT           shift and go to state 55
+
+    mulOP                          shift and go to state 57
+
+state 34
+
+    (72) literal -> CLFLOAT .
+
+    MINUS           reduce using rule 72 (literal -> CLFLOAT .)
+    BANG            reduce using rule 72 (literal -> CLFLOAT .)
+    MULT            reduce using rule 72 (literal -> CLFLOAT .)
+    DIV             reduce using rule 72 (literal -> CLFLOAT .)
+    PRCNT           reduce using rule 72 (literal -> CLFLOAT .)
+    PLUS            reduce using rule 72 (literal -> CLFLOAT .)
+    LT_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    LE_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    GT_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    GE_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    EQ_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    NE_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    OR_OP           reduce using rule 72 (literal -> CLFLOAT .)
+    SEMI            reduce using rule 72 (literal -> CLFLOAT .)
+    RPAREN          reduce using rule 72 (literal -> CLFLOAT .)
+
+
+state 35
+
+    (42) conjunction -> equality .
+
+    OR_OP           reduce using rule 42 (conjunction -> equality .)
+    SEMI            reduce using rule 42 (conjunction -> equality .)
+    RPAREN          reduce using rule 42 (conjunction -> equality .)
+
+
+state 36
+
+    (48) relation -> addition .
+    (49) relation -> addition . relOp relation
+    (50) relOp -> . LT_OP
+    (51) relOp -> . LE_OP
+    (52) relOp -> . GT_OP
+    (53) relOp -> . GE_OP
+
+    EQ_OP           reduce using rule 48 (relation -> addition .)
+    NE_OP           reduce using rule 48 (relation -> addition .)
+    OR_OP           reduce using rule 48 (relation -> addition .)
+    SEMI            reduce using rule 48 (relation -> addition .)
+    RPAREN          reduce using rule 48 (relation -> addition .)
+    LT_OP           shift and go to state 63
+    LE_OP           shift and go to state 60
+    GT_OP           shift and go to state 59
+    GE_OP           shift and go to state 61
+
+    relOp                          shift and go to state 62
+
+state 37
+
+    (68) literal -> INTEGER .
+
+    MINUS           reduce using rule 68 (literal -> INTEGER .)
+    BANG            reduce using rule 68 (literal -> INTEGER .)
+    MULT            reduce using rule 68 (literal -> INTEGER .)
+    DIV             reduce using rule 68 (literal -> INTEGER .)
+    PRCNT           reduce using rule 68 (literal -> INTEGER .)
+    PLUS            reduce using rule 68 (literal -> INTEGER .)
+    LT_OP           reduce using rule 68 (literal -> INTEGER .)
+    LE_OP           reduce using rule 68 (literal -> INTEGER .)
+    GT_OP           reduce using rule 68 (literal -> INTEGER .)
+    GE_OP           reduce using rule 68 (literal -> INTEGER .)
+    EQ_OP           reduce using rule 68 (literal -> INTEGER .)
+    NE_OP           reduce using rule 68 (literal -> INTEGER .)
+    OR_OP           reduce using rule 68 (literal -> INTEGER .)
+    SEMI            reduce using rule 68 (literal -> INTEGER .)
+    RPAREN          reduce using rule 68 (literal -> INTEGER .)
+
+
+state 38
+
+    (11) declarations -> type idList EQUALS expression . SEMI
+
+    SEMI            shift and go to state 64
+
+
+state 39
+
+    (70) literal -> TRUE .
+
+    MINUS           reduce using rule 70 (literal -> TRUE .)
+    BANG            reduce using rule 70 (literal -> TRUE .)
+    MULT            reduce using rule 70 (literal -> TRUE .)
+    DIV             reduce using rule 70 (literal -> TRUE .)
+    PRCNT           reduce using rule 70 (literal -> TRUE .)
+    PLUS            reduce using rule 70 (literal -> TRUE .)
+    LT_OP           reduce using rule 70 (literal -> TRUE .)
+    LE_OP           reduce using rule 70 (literal -> TRUE .)
+    GT_OP           reduce using rule 70 (literal -> TRUE .)
+    GE_OP           reduce using rule 70 (literal -> TRUE .)
+    EQ_OP           reduce using rule 70 (literal -> TRUE .)
+    NE_OP           reduce using rule 70 (literal -> TRUE .)
+    OR_OP           reduce using rule 70 (literal -> TRUE .)
+    SEMI            reduce using rule 70 (literal -> TRUE .)
+    RPAREN          reduce using rule 70 (literal -> TRUE .)
+
+
+state 40
+
+    (71) literal -> FALSE .
+
+    MINUS           reduce using rule 71 (literal -> FALSE .)
+    BANG            reduce using rule 71 (literal -> FALSE .)
+    MULT            reduce using rule 71 (literal -> FALSE .)
+    DIV             reduce using rule 71 (literal -> FALSE .)
+    PRCNT           reduce using rule 71 (literal -> FALSE .)
+    PLUS            reduce using rule 71 (literal -> FALSE .)
+    LT_OP           reduce using rule 71 (literal -> FALSE .)
+    LE_OP           reduce using rule 71 (literal -> FALSE .)
+    GT_OP           reduce using rule 71 (literal -> FALSE .)
+    GE_OP           reduce using rule 71 (literal -> FALSE .)
+    EQ_OP           reduce using rule 71 (literal -> FALSE .)
+    NE_OP           reduce using rule 71 (literal -> FALSE .)
+    OR_OP           reduce using rule 71 (literal -> FALSE .)
+    SEMI            reduce using rule 71 (literal -> FALSE .)
+    RPAREN          reduce using rule 71 (literal -> FALSE .)
+
+
+state 41
+
+    (63) factor -> primary .
+    (64) factor -> primary . unaryOP factor
+    (65) unaryOP -> . MINUS
+    (66) unaryOP -> . BANG
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    MULT            reduce using rule 63 (factor -> primary .)
+    DIV             reduce using rule 63 (factor -> primary .)
+    PRCNT           reduce using rule 63 (factor -> primary .)
+    PLUS            reduce using rule 63 (factor -> primary .)
+    LT_OP           reduce using rule 63 (factor -> primary .)
+    LE_OP           reduce using rule 63 (factor -> primary .)
+    GT_OP           reduce using rule 63 (factor -> primary .)
+    GE_OP           reduce using rule 63 (factor -> primary .)
+    EQ_OP           reduce using rule 63 (factor -> primary .)
+    NE_OP           reduce using rule 63 (factor -> primary .)
+    OR_OP           reduce using rule 63 (factor -> primary .)
+    SEMI            reduce using rule 63 (factor -> primary .)
+    RPAREN          reduce using rule 63 (factor -> primary .)
+    MINUS           shift and go to state 67
+    BANG            shift and go to state 65
+
+  ! MINUS           [ reduce using rule 63 (factor -> primary .) ]
+
+    unaryOP                        shift and go to state 66
+
+state 42
+
+    (43) conjunction -> AND_OP . equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 68
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 43
+
+    (14) idList -> IDENTIFIER COMMA idList .
+
+    SEMI            reduce using rule 14 (idList -> IDENTIFIER COMMA idList .)
+    EQUALS          reduce using rule 14 (idList -> IDENTIFIER COMMA idList .)
+    RBRACE          reduce using rule 14 (idList -> IDENTIFIER COMMA idList .)
+
+
+state 44
+
+    (16) idList -> INTEGER COMMA idList .
+
+    SEMI            reduce using rule 16 (idList -> INTEGER COMMA idList .)
+    EQUALS          reduce using rule 16 (idList -> INTEGER COMMA idList .)
+    RBRACE          reduce using rule 16 (idList -> INTEGER COMMA idList .)
+
+
+state 45
+
+    (6) function -> FUNC IDENTIFIER LPAREN RPAREN . MAP_TO type LCURLY RCURLY
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN . MAP_TO type LCURLY declarations RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN . MAP_TO type LCURLY declarations statements RCURLY
+
+    MAP_TO          shift and go to state 69
+
+
+state 46
+
+    (12) declarations -> declarations type idList EQUALS . expression SEMI
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    expression                     shift and go to state 70
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    conjunction                    shift and go to state 30
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 47
+
+    (10) declarations -> declarations type idList SEMI .
+
+    INT             reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    FLOAT           reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    BOOL            reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    LIST            reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    TUPLE           reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    OBJECT          reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    STRING          reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    FUNC            reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    $end            reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    RCURLY          reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    LET             reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    WHILE           reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    IDENTIFIER      reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    FILTER          reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    AND_OP          reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    INTEGER         reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    TRUE            reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    FALSE           reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    CLFLOAT         reduce using rule 10 (declarations -> declarations type idList SEMI .)
+    CLSTRING        reduce using rule 10 (declarations -> declarations type idList SEMI .)
+
+
+state 48
+
+    (47) equOp -> NE_OP .
+
+    INTEGER         reduce using rule 47 (equOp -> NE_OP .)
+    IDENTIFIER      reduce using rule 47 (equOp -> NE_OP .)
+    TRUE            reduce using rule 47 (equOp -> NE_OP .)
+    FALSE           reduce using rule 47 (equOp -> NE_OP .)
+    CLFLOAT         reduce using rule 47 (equOp -> NE_OP .)
+    CLSTRING        reduce using rule 47 (equOp -> NE_OP .)
+
+
+state 49
+
+    (46) equOp -> EQ_OP .
+
+    INTEGER         reduce using rule 46 (equOp -> EQ_OP .)
+    IDENTIFIER      reduce using rule 46 (equOp -> EQ_OP .)
+    TRUE            reduce using rule 46 (equOp -> EQ_OP .)
+    FALSE           reduce using rule 46 (equOp -> EQ_OP .)
+    CLFLOAT         reduce using rule 46 (equOp -> EQ_OP .)
+    CLSTRING        reduce using rule 46 (equOp -> EQ_OP .)
+
+
+state 50
+
+    (45) equality -> relation equOp . equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 71
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 51
+
+    (41) expression -> conjunction OR_OP . expression
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    expression                     shift and go to state 72
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    conjunction                    shift and go to state 30
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 52
+
+    (55) addition -> term addOP . addition
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    literal                        shift and go to state 29
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    addition                       shift and go to state 73
+    primary                        shift and go to state 41
+
+state 53
+
+    (57) addOP -> MINUS .
+
+    INTEGER         reduce using rule 57 (addOP -> MINUS .)
+    IDENTIFIER      reduce using rule 57 (addOP -> MINUS .)
+    TRUE            reduce using rule 57 (addOP -> MINUS .)
+    FALSE           reduce using rule 57 (addOP -> MINUS .)
+    CLFLOAT         reduce using rule 57 (addOP -> MINUS .)
+    CLSTRING        reduce using rule 57 (addOP -> MINUS .)
+
+
+state 54
+
+    (56) addOP -> PLUS .
+
+    INTEGER         reduce using rule 56 (addOP -> PLUS .)
+    IDENTIFIER      reduce using rule 56 (addOP -> PLUS .)
+    TRUE            reduce using rule 56 (addOP -> PLUS .)
+    FALSE           reduce using rule 56 (addOP -> PLUS .)
+    CLFLOAT         reduce using rule 56 (addOP -> PLUS .)
+    CLSTRING        reduce using rule 56 (addOP -> PLUS .)
+
+
+state 55
+
+    (62) mulOP -> PRCNT .
+
+    INTEGER         reduce using rule 62 (mulOP -> PRCNT .)
+    IDENTIFIER      reduce using rule 62 (mulOP -> PRCNT .)
+    TRUE            reduce using rule 62 (mulOP -> PRCNT .)
+    FALSE           reduce using rule 62 (mulOP -> PRCNT .)
+    CLFLOAT         reduce using rule 62 (mulOP -> PRCNT .)
+    CLSTRING        reduce using rule 62 (mulOP -> PRCNT .)
+
+
+state 56
+
+    (61) mulOP -> DIV .
+
+    INTEGER         reduce using rule 61 (mulOP -> DIV .)
+    IDENTIFIER      reduce using rule 61 (mulOP -> DIV .)
+    TRUE            reduce using rule 61 (mulOP -> DIV .)
+    FALSE           reduce using rule 61 (mulOP -> DIV .)
+    CLFLOAT         reduce using rule 61 (mulOP -> DIV .)
+    CLSTRING        reduce using rule 61 (mulOP -> DIV .)
+
+
+state 57
+
+    (59) term -> factor mulOP . term
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    literal                        shift and go to state 29
+    term                           shift and go to state 74
+    factor                         shift and go to state 33
+    primary                        shift and go to state 41
+
+state 58
+
+    (60) mulOP -> MULT .
+
+    INTEGER         reduce using rule 60 (mulOP -> MULT .)
+    IDENTIFIER      reduce using rule 60 (mulOP -> MULT .)
+    TRUE            reduce using rule 60 (mulOP -> MULT .)
+    FALSE           reduce using rule 60 (mulOP -> MULT .)
+    CLFLOAT         reduce using rule 60 (mulOP -> MULT .)
+    CLSTRING        reduce using rule 60 (mulOP -> MULT .)
+
+
+state 59
+
+    (52) relOp -> GT_OP .
+
+    INTEGER         reduce using rule 52 (relOp -> GT_OP .)
+    IDENTIFIER      reduce using rule 52 (relOp -> GT_OP .)
+    TRUE            reduce using rule 52 (relOp -> GT_OP .)
+    FALSE           reduce using rule 52 (relOp -> GT_OP .)
+    CLFLOAT         reduce using rule 52 (relOp -> GT_OP .)
+    CLSTRING        reduce using rule 52 (relOp -> GT_OP .)
+
+
+state 60
+
+    (51) relOp -> LE_OP .
+
+    INTEGER         reduce using rule 51 (relOp -> LE_OP .)
+    IDENTIFIER      reduce using rule 51 (relOp -> LE_OP .)
+    TRUE            reduce using rule 51 (relOp -> LE_OP .)
+    FALSE           reduce using rule 51 (relOp -> LE_OP .)
+    CLFLOAT         reduce using rule 51 (relOp -> LE_OP .)
+    CLSTRING        reduce using rule 51 (relOp -> LE_OP .)
+
+
+state 61
+
+    (53) relOp -> GE_OP .
+
+    INTEGER         reduce using rule 53 (relOp -> GE_OP .)
+    IDENTIFIER      reduce using rule 53 (relOp -> GE_OP .)
+    TRUE            reduce using rule 53 (relOp -> GE_OP .)
+    FALSE           reduce using rule 53 (relOp -> GE_OP .)
+    CLFLOAT         reduce using rule 53 (relOp -> GE_OP .)
+    CLSTRING        reduce using rule 53 (relOp -> GE_OP .)
+
+
+state 62
+
+    (49) relation -> addition relOp . relation
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    relation                       shift and go to state 75
+    literal                        shift and go to state 29
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 63
+
+    (50) relOp -> LT_OP .
+
+    INTEGER         reduce using rule 50 (relOp -> LT_OP .)
+    IDENTIFIER      reduce using rule 50 (relOp -> LT_OP .)
+    TRUE            reduce using rule 50 (relOp -> LT_OP .)
+    FALSE           reduce using rule 50 (relOp -> LT_OP .)
+    CLFLOAT         reduce using rule 50 (relOp -> LT_OP .)
+    CLSTRING        reduce using rule 50 (relOp -> LT_OP .)
+
+
+state 64
+
+    (11) declarations -> type idList EQUALS expression SEMI .
+
+    INT             reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    FLOAT           reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    BOOL            reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    LIST            reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    TUPLE           reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    OBJECT          reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    STRING          reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    FUNC            reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    $end            reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    RCURLY          reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    LET             reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    WHILE           reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    IDENTIFIER      reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    FILTER          reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    AND_OP          reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    INTEGER         reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    TRUE            reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    FALSE           reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    CLFLOAT         reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+    CLSTRING        reduce using rule 11 (declarations -> type idList EQUALS expression SEMI .)
+
+
+state 65
+
+    (66) unaryOP -> BANG .
+
+    INTEGER         reduce using rule 66 (unaryOP -> BANG .)
+    IDENTIFIER      reduce using rule 66 (unaryOP -> BANG .)
+    TRUE            reduce using rule 66 (unaryOP -> BANG .)
+    FALSE           reduce using rule 66 (unaryOP -> BANG .)
+    CLFLOAT         reduce using rule 66 (unaryOP -> BANG .)
+    CLSTRING        reduce using rule 66 (unaryOP -> BANG .)
+
+
+state 66
+
+    (64) factor -> primary unaryOP . factor
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    literal                        shift and go to state 29
+    factor                         shift and go to state 76
+    primary                        shift and go to state 41
+
+state 67
+
+    (65) unaryOP -> MINUS .
+
+    INTEGER         reduce using rule 65 (unaryOP -> MINUS .)
+    IDENTIFIER      reduce using rule 65 (unaryOP -> MINUS .)
+    TRUE            reduce using rule 65 (unaryOP -> MINUS .)
+    FALSE           reduce using rule 65 (unaryOP -> MINUS .)
+    CLFLOAT         reduce using rule 65 (unaryOP -> MINUS .)
+    CLSTRING        reduce using rule 65 (unaryOP -> MINUS .)
+
+
+state 68
+
+    (43) conjunction -> AND_OP equality .
+
+    OR_OP           reduce using rule 43 (conjunction -> AND_OP equality .)
+    SEMI            reduce using rule 43 (conjunction -> AND_OP equality .)
+    RPAREN          reduce using rule 43 (conjunction -> AND_OP equality .)
+
+
+state 69
+
+    (6) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO . type LCURLY RCURLY
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO . type LCURLY declarations RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO . type LCURLY declarations statements RCURLY
+    (17) type -> . INT
+    (18) type -> . FLOAT
+    (19) type -> . BOOL
+    (20) type -> . LIST
+    (21) type -> . TUPLE
+    (22) type -> . OBJECT
+    (23) type -> . STRING
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 1
+    BOOL            shift and go to state 11
+    LIST            shift and go to state 13
+    TUPLE           shift and go to state 10
+    OBJECT          shift and go to state 8
+    STRING          shift and go to state 12
+
+    type                           shift and go to state 77
+
+state 70
+
+    (12) declarations -> declarations type idList EQUALS expression . SEMI
+
+    SEMI            shift and go to state 78
+
+
+state 71
+
+    (45) equality -> relation equOp equality .
+
+    OR_OP           reduce using rule 45 (equality -> relation equOp equality .)
+    SEMI            reduce using rule 45 (equality -> relation equOp equality .)
+    RPAREN          reduce using rule 45 (equality -> relation equOp equality .)
+
+
+state 72
+
+    (41) expression -> conjunction OR_OP expression .
+
+    SEMI            reduce using rule 41 (expression -> conjunction OR_OP expression .)
+    RPAREN          reduce using rule 41 (expression -> conjunction OR_OP expression .)
+
+
+state 73
+
+    (55) addition -> term addOP addition .
+
+    LT_OP           reduce using rule 55 (addition -> term addOP addition .)
+    LE_OP           reduce using rule 55 (addition -> term addOP addition .)
+    GT_OP           reduce using rule 55 (addition -> term addOP addition .)
+    GE_OP           reduce using rule 55 (addition -> term addOP addition .)
+    EQ_OP           reduce using rule 55 (addition -> term addOP addition .)
+    NE_OP           reduce using rule 55 (addition -> term addOP addition .)
+    OR_OP           reduce using rule 55 (addition -> term addOP addition .)
+    SEMI            reduce using rule 55 (addition -> term addOP addition .)
+    RPAREN          reduce using rule 55 (addition -> term addOP addition .)
+
+
+state 74
+
+    (59) term -> factor mulOP term .
+
+    PLUS            reduce using rule 59 (term -> factor mulOP term .)
+    MINUS           reduce using rule 59 (term -> factor mulOP term .)
+    LT_OP           reduce using rule 59 (term -> factor mulOP term .)
+    LE_OP           reduce using rule 59 (term -> factor mulOP term .)
+    GT_OP           reduce using rule 59 (term -> factor mulOP term .)
+    GE_OP           reduce using rule 59 (term -> factor mulOP term .)
+    EQ_OP           reduce using rule 59 (term -> factor mulOP term .)
+    NE_OP           reduce using rule 59 (term -> factor mulOP term .)
+    OR_OP           reduce using rule 59 (term -> factor mulOP term .)
+    SEMI            reduce using rule 59 (term -> factor mulOP term .)
+    RPAREN          reduce using rule 59 (term -> factor mulOP term .)
+
+
+state 75
+
+    (49) relation -> addition relOp relation .
+
+    EQ_OP           reduce using rule 49 (relation -> addition relOp relation .)
+    NE_OP           reduce using rule 49 (relation -> addition relOp relation .)
+    OR_OP           reduce using rule 49 (relation -> addition relOp relation .)
+    SEMI            reduce using rule 49 (relation -> addition relOp relation .)
+    RPAREN          reduce using rule 49 (relation -> addition relOp relation .)
+
+
+state 76
+
+    (64) factor -> primary unaryOP factor .
+
+    MULT            reduce using rule 64 (factor -> primary unaryOP factor .)
+    DIV             reduce using rule 64 (factor -> primary unaryOP factor .)
+    PRCNT           reduce using rule 64 (factor -> primary unaryOP factor .)
+    PLUS            reduce using rule 64 (factor -> primary unaryOP factor .)
+    MINUS           reduce using rule 64 (factor -> primary unaryOP factor .)
+    LT_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    LE_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    GT_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    GE_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    EQ_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    NE_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    OR_OP           reduce using rule 64 (factor -> primary unaryOP factor .)
+    SEMI            reduce using rule 64 (factor -> primary unaryOP factor .)
+    RPAREN          reduce using rule 64 (factor -> primary unaryOP factor .)
+
+
+state 77
+
+    (6) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type . LCURLY RCURLY
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type . LCURLY declarations RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type . LCURLY declarations statements RCURLY
+
+    LCURLY          shift and go to state 79
+
+
+state 78
+
+    (12) declarations -> declarations type idList EQUALS expression SEMI .
+
+    INT             reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    FLOAT           reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    BOOL            reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    LIST            reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    TUPLE           reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    OBJECT          reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    STRING          reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    FUNC            reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    $end            reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    RCURLY          reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    LET             reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    WHILE           reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    IDENTIFIER      reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    FILTER          reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    AND_OP          reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    INTEGER         reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    TRUE            reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    FALSE           reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    CLFLOAT         reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+    CLSTRING        reduce using rule 12 (declarations -> declarations type idList EQUALS expression SEMI .)
+
+
+state 79
+
+    (6) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY . RCURLY
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY . declarations RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY . declarations statements RCURLY
+    (9) declarations -> . type idList SEMI
+    (10) declarations -> . declarations type idList SEMI
+    (11) declarations -> . type idList EQUALS expression SEMI
+    (12) declarations -> . declarations type idList EQUALS expression SEMI
+    (17) type -> . INT
+    (18) type -> . FLOAT
+    (19) type -> . BOOL
+    (20) type -> . LIST
+    (21) type -> . TUPLE
+    (22) type -> . OBJECT
+    (23) type -> . STRING
+
+    RCURLY          shift and go to state 81
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 1
+    BOOL            shift and go to state 11
+    LIST            shift and go to state 13
+    TUPLE           shift and go to state 10
+    OBJECT          shift and go to state 8
+    STRING          shift and go to state 12
+
+    type                           shift and go to state 4
+    declarations                   shift and go to state 80
+
+state 80
+
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations . RCURLY
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations . statements RCURLY
+    (10) declarations -> declarations . type idList SEMI
+    (12) declarations -> declarations . type idList EQUALS expression SEMI
+    (24) statements -> . statement
+    (25) statements -> . statements statement
+    (17) type -> . INT
+    (18) type -> . FLOAT
+    (19) type -> . BOOL
+    (20) type -> . LIST
+    (21) type -> . TUPLE
+    (22) type -> . OBJECT
+    (23) type -> . STRING
+    (26) statement -> . expression SEMI
+    (27) statement -> . assignment SEMI
+    (28) statement -> . whileStatement
+    (29) statement -> . listStatement
+    (30) statement -> . streamStatement
+    (31) statement -> . arrayStatement
+    (32) statement -> . filterStatement
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (33) assignment -> . LET IDENTIFIER EQUALS expression SEMI
+    (34) whileStatement -> . WHILE LPAREN expression RPAREN LCURLY statements RCURLY
+    (35) listStatement -> . LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> . LET IDENTIFIER EQUALS LBRACE RBRACE SEMI
+    (38) streamStatement -> . IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI
+    (39) arrayStatement -> . LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+    (37) filterStatement -> . FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    RCURLY          shift and go to state 89
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 1
+    BOOL            shift and go to state 11
+    LIST            shift and go to state 13
+    TUPLE           shift and go to state 10
+    OBJECT          shift and go to state 8
+    STRING          shift and go to state 12
+    LET             shift and go to state 94
+    WHILE           shift and go to state 95
+    IDENTIFIER      shift and go to state 88
+    FILTER          shift and go to state 91
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    statements                     shift and go to state 85
+    type                           shift and go to state 20
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    arrayStatement                 shift and go to state 82
+    conjunction                    shift and go to state 30
+    filterStatement                shift and go to state 83
+    statement                      shift and go to state 86
+    streamStatement                shift and go to state 87
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    listStatement                  shift and go to state 84
+    expression                     shift and go to state 90
+    assignment                     shift and go to state 92
+    whileStatement                 shift and go to state 93
+    primary                        shift and go to state 41
+
+state 81
+
+    (6) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY .
+
+    FUNC            reduce using rule 6 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY .)
+    $end            reduce using rule 6 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY RCURLY .)
+
+
+state 82
+
+    (31) statement -> arrayStatement .
+
+    RCURLY          reduce using rule 31 (statement -> arrayStatement .)
+    LET             reduce using rule 31 (statement -> arrayStatement .)
+    WHILE           reduce using rule 31 (statement -> arrayStatement .)
+    IDENTIFIER      reduce using rule 31 (statement -> arrayStatement .)
+    FILTER          reduce using rule 31 (statement -> arrayStatement .)
+    AND_OP          reduce using rule 31 (statement -> arrayStatement .)
+    INTEGER         reduce using rule 31 (statement -> arrayStatement .)
+    TRUE            reduce using rule 31 (statement -> arrayStatement .)
+    FALSE           reduce using rule 31 (statement -> arrayStatement .)
+    CLFLOAT         reduce using rule 31 (statement -> arrayStatement .)
+    CLSTRING        reduce using rule 31 (statement -> arrayStatement .)
+
+
+state 83
+
+    (32) statement -> filterStatement .
+
+    RCURLY          reduce using rule 32 (statement -> filterStatement .)
+    LET             reduce using rule 32 (statement -> filterStatement .)
+    WHILE           reduce using rule 32 (statement -> filterStatement .)
+    IDENTIFIER      reduce using rule 32 (statement -> filterStatement .)
+    FILTER          reduce using rule 32 (statement -> filterStatement .)
+    AND_OP          reduce using rule 32 (statement -> filterStatement .)
+    INTEGER         reduce using rule 32 (statement -> filterStatement .)
+    TRUE            reduce using rule 32 (statement -> filterStatement .)
+    FALSE           reduce using rule 32 (statement -> filterStatement .)
+    CLFLOAT         reduce using rule 32 (statement -> filterStatement .)
+    CLSTRING        reduce using rule 32 (statement -> filterStatement .)
+
+
+state 84
+
+    (29) statement -> listStatement .
+
+    RCURLY          reduce using rule 29 (statement -> listStatement .)
+    LET             reduce using rule 29 (statement -> listStatement .)
+    WHILE           reduce using rule 29 (statement -> listStatement .)
+    IDENTIFIER      reduce using rule 29 (statement -> listStatement .)
+    FILTER          reduce using rule 29 (statement -> listStatement .)
+    AND_OP          reduce using rule 29 (statement -> listStatement .)
+    INTEGER         reduce using rule 29 (statement -> listStatement .)
+    TRUE            reduce using rule 29 (statement -> listStatement .)
+    FALSE           reduce using rule 29 (statement -> listStatement .)
+    CLFLOAT         reduce using rule 29 (statement -> listStatement .)
+    CLSTRING        reduce using rule 29 (statement -> listStatement .)
+
+
+state 85
+
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements . RCURLY
+    (25) statements -> statements . statement
+    (26) statement -> . expression SEMI
+    (27) statement -> . assignment SEMI
+    (28) statement -> . whileStatement
+    (29) statement -> . listStatement
+    (30) statement -> . streamStatement
+    (31) statement -> . arrayStatement
+    (32) statement -> . filterStatement
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (33) assignment -> . LET IDENTIFIER EQUALS expression SEMI
+    (34) whileStatement -> . WHILE LPAREN expression RPAREN LCURLY statements RCURLY
+    (35) listStatement -> . LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> . LET IDENTIFIER EQUALS LBRACE RBRACE SEMI
+    (38) streamStatement -> . IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI
+    (39) arrayStatement -> . LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+    (37) filterStatement -> . FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    RCURLY          shift and go to state 97
+    LET             shift and go to state 94
+    WHILE           shift and go to state 95
+    IDENTIFIER      shift and go to state 88
+    FILTER          shift and go to state 91
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    arrayStatement                 shift and go to state 82
+    conjunction                    shift and go to state 30
+    filterStatement                shift and go to state 83
+    statement                      shift and go to state 96
+    streamStatement                shift and go to state 87
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    listStatement                  shift and go to state 84
+    expression                     shift and go to state 90
+    assignment                     shift and go to state 92
+    whileStatement                 shift and go to state 93
+    primary                        shift and go to state 41
+
+state 86
+
+    (24) statements -> statement .
+
+    RCURLY          reduce using rule 24 (statements -> statement .)
+    LET             reduce using rule 24 (statements -> statement .)
+    WHILE           reduce using rule 24 (statements -> statement .)
+    IDENTIFIER      reduce using rule 24 (statements -> statement .)
+    FILTER          reduce using rule 24 (statements -> statement .)
+    AND_OP          reduce using rule 24 (statements -> statement .)
+    INTEGER         reduce using rule 24 (statements -> statement .)
+    TRUE            reduce using rule 24 (statements -> statement .)
+    FALSE           reduce using rule 24 (statements -> statement .)
+    CLFLOAT         reduce using rule 24 (statements -> statement .)
+    CLSTRING        reduce using rule 24 (statements -> statement .)
+
+
+state 87
+
+    (30) statement -> streamStatement .
+
+    RCURLY          reduce using rule 30 (statement -> streamStatement .)
+    LET             reduce using rule 30 (statement -> streamStatement .)
+    WHILE           reduce using rule 30 (statement -> streamStatement .)
+    IDENTIFIER      reduce using rule 30 (statement -> streamStatement .)
+    FILTER          reduce using rule 30 (statement -> streamStatement .)
+    AND_OP          reduce using rule 30 (statement -> streamStatement .)
+    INTEGER         reduce using rule 30 (statement -> streamStatement .)
+    TRUE            reduce using rule 30 (statement -> streamStatement .)
+    FALSE           reduce using rule 30 (statement -> streamStatement .)
+    CLFLOAT         reduce using rule 30 (statement -> streamStatement .)
+    CLSTRING        reduce using rule 30 (statement -> streamStatement .)
+
+
+state 88
+
+    (38) streamStatement -> IDENTIFIER . PIPE STREAM LPAREN RPAREN SEMI
+    (69) literal -> IDENTIFIER .
+
+    PIPE            shift and go to state 98
+    MINUS           reduce using rule 69 (literal -> IDENTIFIER .)
+    BANG            reduce using rule 69 (literal -> IDENTIFIER .)
+    MULT            reduce using rule 69 (literal -> IDENTIFIER .)
+    DIV             reduce using rule 69 (literal -> IDENTIFIER .)
+    PRCNT           reduce using rule 69 (literal -> IDENTIFIER .)
+    PLUS            reduce using rule 69 (literal -> IDENTIFIER .)
+    LT_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    LE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    GT_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    GE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    EQ_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    NE_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    OR_OP           reduce using rule 69 (literal -> IDENTIFIER .)
+    SEMI            reduce using rule 69 (literal -> IDENTIFIER .)
+
+
+state 89
+
+    (7) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY .
+
+    FUNC            reduce using rule 7 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY .)
+    $end            reduce using rule 7 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations RCURLY .)
+
+
+state 90
+
+    (26) statement -> expression . SEMI
+
+    SEMI            shift and go to state 99
+
+
+state 91
+
+    (37) filterStatement -> FILTER . LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    LCURLY          shift and go to state 100
+
+
+state 92
+
+    (27) statement -> assignment . SEMI
+
+    SEMI            shift and go to state 101
+
+
+state 93
+
+    (28) statement -> whileStatement .
+
+    RCURLY          reduce using rule 28 (statement -> whileStatement .)
+    LET             reduce using rule 28 (statement -> whileStatement .)
+    WHILE           reduce using rule 28 (statement -> whileStatement .)
+    IDENTIFIER      reduce using rule 28 (statement -> whileStatement .)
+    FILTER          reduce using rule 28 (statement -> whileStatement .)
+    AND_OP          reduce using rule 28 (statement -> whileStatement .)
+    INTEGER         reduce using rule 28 (statement -> whileStatement .)
+    TRUE            reduce using rule 28 (statement -> whileStatement .)
+    FALSE           reduce using rule 28 (statement -> whileStatement .)
+    CLFLOAT         reduce using rule 28 (statement -> whileStatement .)
+    CLSTRING        reduce using rule 28 (statement -> whileStatement .)
+
+
+state 94
+
+    (33) assignment -> LET . IDENTIFIER EQUALS expression SEMI
+    (35) listStatement -> LET . IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> LET . IDENTIFIER EQUALS LBRACE RBRACE SEMI
+    (39) arrayStatement -> LET . IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+
+    IDENTIFIER      shift and go to state 102
+
+
+state 95
+
+    (34) whileStatement -> WHILE . LPAREN expression RPAREN LCURLY statements RCURLY
+
+    LPAREN          shift and go to state 103
+
+
+state 96
+
+    (25) statements -> statements statement .
+
+    RCURLY          reduce using rule 25 (statements -> statements statement .)
+    LET             reduce using rule 25 (statements -> statements statement .)
+    WHILE           reduce using rule 25 (statements -> statements statement .)
+    IDENTIFIER      reduce using rule 25 (statements -> statements statement .)
+    FILTER          reduce using rule 25 (statements -> statements statement .)
+    AND_OP          reduce using rule 25 (statements -> statements statement .)
+    INTEGER         reduce using rule 25 (statements -> statements statement .)
+    TRUE            reduce using rule 25 (statements -> statements statement .)
+    FALSE           reduce using rule 25 (statements -> statements statement .)
+    CLFLOAT         reduce using rule 25 (statements -> statements statement .)
+    CLSTRING        reduce using rule 25 (statements -> statements statement .)
+
+
+state 97
+
+    (8) function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY .
+
+    FUNC            reduce using rule 8 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY .)
+    $end            reduce using rule 8 (function -> FUNC IDENTIFIER LPAREN RPAREN MAP_TO type LCURLY declarations statements RCURLY .)
+
+
+state 98
+
+    (38) streamStatement -> IDENTIFIER PIPE . STREAM LPAREN RPAREN SEMI
+
+    STREAM          shift and go to state 104
+
+
+state 99
+
+    (26) statement -> expression SEMI .
+
+    RCURLY          reduce using rule 26 (statement -> expression SEMI .)
+    LET             reduce using rule 26 (statement -> expression SEMI .)
+    WHILE           reduce using rule 26 (statement -> expression SEMI .)
+    IDENTIFIER      reduce using rule 26 (statement -> expression SEMI .)
+    FILTER          reduce using rule 26 (statement -> expression SEMI .)
+    AND_OP          reduce using rule 26 (statement -> expression SEMI .)
+    INTEGER         reduce using rule 26 (statement -> expression SEMI .)
+    TRUE            reduce using rule 26 (statement -> expression SEMI .)
+    FALSE           reduce using rule 26 (statement -> expression SEMI .)
+    CLFLOAT         reduce using rule 26 (statement -> expression SEMI .)
+    CLSTRING        reduce using rule 26 (statement -> expression SEMI .)
+
+
+state 100
+
+    (37) filterStatement -> FILTER LCURLY . LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    LT_OP           shift and go to state 105
+
+
+state 101
+
+    (27) statement -> assignment SEMI .
+
+    RCURLY          reduce using rule 27 (statement -> assignment SEMI .)
+    LET             reduce using rule 27 (statement -> assignment SEMI .)
+    WHILE           reduce using rule 27 (statement -> assignment SEMI .)
+    IDENTIFIER      reduce using rule 27 (statement -> assignment SEMI .)
+    FILTER          reduce using rule 27 (statement -> assignment SEMI .)
+    AND_OP          reduce using rule 27 (statement -> assignment SEMI .)
+    INTEGER         reduce using rule 27 (statement -> assignment SEMI .)
+    TRUE            reduce using rule 27 (statement -> assignment SEMI .)
+    FALSE           reduce using rule 27 (statement -> assignment SEMI .)
+    CLFLOAT         reduce using rule 27 (statement -> assignment SEMI .)
+    CLSTRING        reduce using rule 27 (statement -> assignment SEMI .)
+
+
+state 102
+
+    (33) assignment -> LET IDENTIFIER . EQUALS expression SEMI
+    (35) listStatement -> LET IDENTIFIER . EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> LET IDENTIFIER . EQUALS LBRACE RBRACE SEMI
+    (39) arrayStatement -> LET IDENTIFIER . EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+
+    EQUALS          shift and go to state 106
+
+
+state 103
+
+    (34) whileStatement -> WHILE LPAREN . expression RPAREN LCURLY statements RCURLY
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    expression                     shift and go to state 107
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    conjunction                    shift and go to state 30
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 104
+
+    (38) streamStatement -> IDENTIFIER PIPE STREAM . LPAREN RPAREN SEMI
+
+    LPAREN          shift and go to state 108
+
+
+state 105
+
+    (37) filterStatement -> FILTER LCURLY LT_OP . INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    INTEGER         shift and go to state 109
+
+
+state 106
+
+    (33) assignment -> LET IDENTIFIER EQUALS . expression SEMI
+    (35) listStatement -> LET IDENTIFIER EQUALS . LBRACE idList RBRACE SEMI
+    (36) listStatement -> LET IDENTIFIER EQUALS . LBRACE RBRACE SEMI
+    (39) arrayStatement -> LET IDENTIFIER EQUALS . ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    LBRACE          shift and go to state 112
+    ARRAY           shift and go to state 110
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    IDENTIFIER      shift and go to state 32
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    expression                     shift and go to state 111
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    conjunction                    shift and go to state 30
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 107
+
+    (34) whileStatement -> WHILE LPAREN expression . RPAREN LCURLY statements RCURLY
+
+    RPAREN          shift and go to state 113
+
+
+state 108
+
+    (38) streamStatement -> IDENTIFIER PIPE STREAM LPAREN . RPAREN SEMI
+
+    RPAREN          shift and go to state 114
+
+
+state 109
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER . GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    GT_OP           shift and go to state 115
+
+
+state 110
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY . LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+
+    LPAREN          shift and go to state 116
+
+
+state 111
+
+    (33) assignment -> LET IDENTIFIER EQUALS expression . SEMI
+
+    SEMI            shift and go to state 117
+
+
+state 112
+
+    (35) listStatement -> LET IDENTIFIER EQUALS LBRACE . idList RBRACE SEMI
+    (36) listStatement -> LET IDENTIFIER EQUALS LBRACE . RBRACE SEMI
+    (13) idList -> . IDENTIFIER
+    (14) idList -> . IDENTIFIER COMMA idList
+    (15) idList -> . INTEGER
+    (16) idList -> . INTEGER COMMA idList
+
+    RBRACE          shift and go to state 119
+    IDENTIFIER      shift and go to state 16
+    INTEGER         shift and go to state 17
+
+    idList                         shift and go to state 118
+
+state 113
+
+    (34) whileStatement -> WHILE LPAREN expression RPAREN . LCURLY statements RCURLY
+
+    LCURLY          shift and go to state 120
+
+
+state 114
+
+    (38) streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN . SEMI
+
+    SEMI            shift and go to state 121
+
+
+state 115
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP . PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    PRCNT           shift and go to state 122
+
+
+state 116
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN . INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+
+    INTEGER         shift and go to state 123
+
+
+state 117
+
+    (33) assignment -> LET IDENTIFIER EQUALS expression SEMI .
+
+    SEMI            reduce using rule 33 (assignment -> LET IDENTIFIER EQUALS expression SEMI .)
+
+
+state 118
+
+    (35) listStatement -> LET IDENTIFIER EQUALS LBRACE idList . RBRACE SEMI
+
+    RBRACE          shift and go to state 124
+
+
+state 119
+
+    (36) listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE . SEMI
+
+    SEMI            shift and go to state 125
+
+
+state 120
+
+    (34) whileStatement -> WHILE LPAREN expression RPAREN LCURLY . statements RCURLY
+    (24) statements -> . statement
+    (25) statements -> . statements statement
+    (26) statement -> . expression SEMI
+    (27) statement -> . assignment SEMI
+    (28) statement -> . whileStatement
+    (29) statement -> . listStatement
+    (30) statement -> . streamStatement
+    (31) statement -> . arrayStatement
+    (32) statement -> . filterStatement
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (33) assignment -> . LET IDENTIFIER EQUALS expression SEMI
+    (34) whileStatement -> . WHILE LPAREN expression RPAREN LCURLY statements RCURLY
+    (35) listStatement -> . LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> . LET IDENTIFIER EQUALS LBRACE RBRACE SEMI
+    (38) streamStatement -> . IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI
+    (39) arrayStatement -> . LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+    (37) filterStatement -> . FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    LET             shift and go to state 94
+    WHILE           shift and go to state 95
+    IDENTIFIER      shift and go to state 88
+    FILTER          shift and go to state 91
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    listStatement                  shift and go to state 84
+    expression                     shift and go to state 90
+    assignment                     shift and go to state 92
+    statements                     shift and go to state 126
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    whileStatement                 shift and go to state 93
+    arrayStatement                 shift and go to state 82
+    conjunction                    shift and go to state 30
+    filterStatement                shift and go to state 83
+    statement                      shift and go to state 86
+    streamStatement                shift and go to state 87
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 121
+
+    (38) streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .
+
+    RCURLY          reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    LET             reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    WHILE           reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    IDENTIFIER      reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    FILTER          reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    AND_OP          reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    INTEGER         reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    TRUE            reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    FALSE           reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    CLFLOAT         reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+    CLSTRING        reduce using rule 38 (streamStatement -> IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI .)
+
+
+state 122
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT . INTEGER EQ_OP INTEGER RCURLY
+
+    INTEGER         shift and go to state 127
+
+
+state 123
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER . OPEN_RNG INTEGER RPAREN PIPE filterStatement
+
+    OPEN_RNG        shift and go to state 128
+
+
+state 124
+
+    (35) listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE . SEMI
+
+    SEMI            shift and go to state 129
+
+
+state 125
+
+    (36) listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .
+
+    RCURLY          reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    LET             reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    WHILE           reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    IDENTIFIER      reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    FILTER          reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    AND_OP          reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    INTEGER         reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    TRUE            reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    FALSE           reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    CLFLOAT         reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+    CLSTRING        reduce using rule 36 (listStatement -> LET IDENTIFIER EQUALS LBRACE RBRACE SEMI .)
+
+
+state 126
+
+    (34) whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements . RCURLY
+    (25) statements -> statements . statement
+    (26) statement -> . expression SEMI
+    (27) statement -> . assignment SEMI
+    (28) statement -> . whileStatement
+    (29) statement -> . listStatement
+    (30) statement -> . streamStatement
+    (31) statement -> . arrayStatement
+    (32) statement -> . filterStatement
+    (40) expression -> . conjunction
+    (41) expression -> . conjunction OR_OP expression
+    (33) assignment -> . LET IDENTIFIER EQUALS expression SEMI
+    (34) whileStatement -> . WHILE LPAREN expression RPAREN LCURLY statements RCURLY
+    (35) listStatement -> . LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI
+    (36) listStatement -> . LET IDENTIFIER EQUALS LBRACE RBRACE SEMI
+    (38) streamStatement -> . IDENTIFIER PIPE STREAM LPAREN RPAREN SEMI
+    (39) arrayStatement -> . LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement
+    (37) filterStatement -> . FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+    (42) conjunction -> . equality
+    (43) conjunction -> . AND_OP equality
+    (44) equality -> . relation
+    (45) equality -> . relation equOp equality
+    (48) relation -> . addition
+    (49) relation -> . addition relOp relation
+    (54) addition -> . term
+    (55) addition -> . term addOP addition
+    (58) term -> . factor
+    (59) term -> . factor mulOP term
+    (63) factor -> . primary
+    (64) factor -> . primary unaryOP factor
+    (67) primary -> . literal
+    (68) literal -> . INTEGER
+    (69) literal -> . IDENTIFIER
+    (70) literal -> . TRUE
+    (71) literal -> . FALSE
+    (72) literal -> . CLFLOAT
+    (73) literal -> . CLSTRING
+
+    RCURLY          shift and go to state 130
+    LET             shift and go to state 94
+    WHILE           shift and go to state 95
+    IDENTIFIER      shift and go to state 88
+    FILTER          shift and go to state 91
+    AND_OP          shift and go to state 42
+    INTEGER         shift and go to state 37
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    CLFLOAT         shift and go to state 34
+    CLSTRING        shift and go to state 27
+
+    listStatement                  shift and go to state 84
+    expression                     shift and go to state 90
+    assignment                     shift and go to state 92
+    relation                       shift and go to state 28
+    literal                        shift and go to state 29
+    whileStatement                 shift and go to state 93
+    arrayStatement                 shift and go to state 82
+    conjunction                    shift and go to state 30
+    filterStatement                shift and go to state 83
+    statement                      shift and go to state 96
+    streamStatement                shift and go to state 87
+    term                           shift and go to state 31
+    factor                         shift and go to state 33
+    equality                       shift and go to state 35
+    addition                       shift and go to state 36
+    primary                        shift and go to state 41
+
+state 127
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER . EQ_OP INTEGER RCURLY
+
+    EQ_OP           shift and go to state 131
+
+
+state 128
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG . INTEGER RPAREN PIPE filterStatement
+
+    INTEGER         shift and go to state 132
+
+
+state 129
+
+    (35) listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .
+
+    RCURLY          reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    LET             reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    WHILE           reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    IDENTIFIER      reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    FILTER          reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    AND_OP          reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    INTEGER         reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    TRUE            reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    FALSE           reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    CLFLOAT         reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+    CLSTRING        reduce using rule 35 (listStatement -> LET IDENTIFIER EQUALS LBRACE idList RBRACE SEMI .)
+
+
+state 130
+
+    (34) whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .
+
+    RCURLY          reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    LET             reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    WHILE           reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    IDENTIFIER      reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    FILTER          reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    AND_OP          reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    INTEGER         reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    TRUE            reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    FALSE           reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    CLFLOAT         reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+    CLSTRING        reduce using rule 34 (whileStatement -> WHILE LPAREN expression RPAREN LCURLY statements RCURLY .)
+
+
+state 131
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP . INTEGER RCURLY
+
+    INTEGER         shift and go to state 133
+
+
+state 132
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER . RPAREN PIPE filterStatement
+
+    RPAREN          shift and go to state 134
+
+
+state 133
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER . RCURLY
+
+    RCURLY          shift and go to state 135
+
+
+state 134
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN . PIPE filterStatement
+
+    PIPE            shift and go to state 136
+
+
+state 135
+
+    (37) filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .
+
+    RCURLY          reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    LET             reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    WHILE           reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    IDENTIFIER      reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    FILTER          reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    AND_OP          reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    INTEGER         reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    TRUE            reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    FALSE           reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    CLFLOAT         reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+    CLSTRING        reduce using rule 37 (filterStatement -> FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY .)
+
+
+state 136
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE . filterStatement
+    (37) filterStatement -> . FILTER LCURLY LT_OP INTEGER GT_OP PRCNT INTEGER EQ_OP INTEGER RCURLY
+
+    FILTER          shift and go to state 91
+
+    filterStatement                shift and go to state 137
+
+state 137
+
+    (39) arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .
+
+    RCURLY          reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    LET             reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    WHILE           reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    IDENTIFIER      reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    FILTER          reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    AND_OP          reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    INTEGER         reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    TRUE            reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    FALSE           reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    CLFLOAT         reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+    CLSTRING        reduce using rule 39 (arrayStatement -> LET IDENTIFIER EQUALS ARRAY LPAREN INTEGER OPEN_RNG INTEGER RPAREN PIPE filterStatement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MINUS in state 41 resolved as shift
