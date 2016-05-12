@@ -23,6 +23,8 @@ reserved = {
     'STREAM' : 'stream',
     'FILTER' : 'filter',
     'ARRAY'  : 'Array',
+    'IN'     : 'in',
+    'COLON'  : 'colon',
 }
 
 # List of token names.
@@ -80,6 +82,11 @@ def t_INTEGER(t):
         print ("Line %d: Number %s is too large!" % (t.lineno,t.value))
         t.value = 0
     return t
+
+def t_COMMENT(t):
+    r'(/\*(.|\n)*?\*/)|(//.*)'
+    print ("Saw a comment")
+    pass
 
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'

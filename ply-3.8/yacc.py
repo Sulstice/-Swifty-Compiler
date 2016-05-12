@@ -271,7 +271,7 @@ def p_error(p):
 import ply.yacc as yacc
 yacc.yacc()
 
-with open('functionExample.txt', 'r') as content_file:
+with open('StreamExample.txt', 'r') as content_file:
             content = content_file.read()
 yacc.parse(content)
 
